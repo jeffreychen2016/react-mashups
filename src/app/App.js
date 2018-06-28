@@ -3,14 +3,18 @@ import './App.css';
 import Animals from '../components/Animals/Animals';
 import Form from '../components/Form/Form';
 import connection from '../firebaseRequests/connection';
-import getAnimals from '../firebaseRequests/animals';
+import animalRequest from '../firebaseRequests/animalRequest';
 
 class App extends Component {
+  state = {
+    animals: [],
+  }
+
   componentDidMount () {
     connection();
-    getAnimals()
+    animalRequest()
       .then((animalsArray) => {
-        console.log(animalsArray);
+        this.setState({animals:animalsArray});
       })
       .catch((err) => {
         console.error('Error getting animals:', err);
@@ -21,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="col-md-6">
-          <Animals />
+          <Animals animals={this.state.animals}/>
         </div>
         <div className="col-md-6">
           <Form />
