@@ -3,8 +3,17 @@ import './Animals.css';
 
 class Animals extends React.Component {
   render () {
+    const {animals} = this.props;
+    console.log(animals);
+    const indivisualAnimal = animals.map((animal) => {
+      return (
+        <div key={animal.id}>{animal.name}</div>
+      );
+    });
     return (
-      <div className="Animals">Animals Div</div>
+      <div className="Animals">
+        {indivisualAnimal}
+      </div>
     );
   };
 };
