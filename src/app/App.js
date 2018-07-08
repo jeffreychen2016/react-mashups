@@ -14,7 +14,7 @@ class App extends Component {
     connection();
     animalRequest()
       .then((animalsArray) => {
-        this.setState({animals:animalsArray});
+        this.setState({animals: animalsArray});
       })
       .catch((err) => {
         console.error('Error getting animals:', err);
